@@ -33,9 +33,9 @@ export default function Nav() {
         <div id="search">
           <FontAwesomeIcon icon={faSearch} id='searchicon' />
         </div>
-        <div id="mic">
+        {/* <div id="mic">
           <FontAwesomeIcon icon={faMicrophone} id='micicon' />
-        </div>
+        </div> */}
       </div>
 
       <div id="right">

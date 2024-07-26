@@ -1,0 +1,51 @@
+/* General styling for the navigation bar */
+#nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 10vw;
+    background-color: #f8f8f8;
+    border-bottom: solid 1px black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    box-sizing: border-box;
+    padding: 0 2vw; /* Use vw for responsive padding */
+  }
+  
+  #left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    width: auto;
+    border: solid 1px red;
+  }
+  
+  #baricon {
+    font-size: 5vw; /* Use vw for responsive font size */
+    cursor: pointer;
+    margin-right: 2vw; /* Use vw for responsive margin */
+  }
+  
+  #logoimg {
+    height: 20vw; /* Use vw for responsive height */
+    width: 20vw; /* Maintain aspect ratio */
+  }
+  
+  #right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    width: auto;
+    padding: 0 2vw; /* Use vw for responsive padding */
+  }
+  
+  #right .icon {
+    margin-left: 2vw; /* Use vw for responsive margin */
+    font-size: 4vw; /* Use vw for responsive font size */
+  }
+  

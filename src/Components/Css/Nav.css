@@ -62,8 +62,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 3vw;
   width: auto;
+  position: relative; /* Add relative positioning to #midpart */
 }
 
 #input-container {
@@ -71,19 +71,23 @@
   align-items: center;
   justify-content: center;
   width: auto;
-  height: 3vw;
+  height: 2.5vw;
 }
 
-#search-left {
+#search-left,
+#dontshow-searchleft {
+  position: absolute; /* Use absolute positioning for the search icon */
+  left: 0; /* Position it on the left */
   display: flex;
   align-items: center;
   justify-content: center;
   border: 0.1vw solid #000;
   border-radius: 2vw 0 0 2vw;
-  width: 3vw;
-  height: 2.9vw;
+  width: 4vw;
+  height: 2.4vw;
   background-color: white;
   border-right: none;
+  z-index: 1; /* Ensure it appears above other elements */
 }
 
 #dontshow-searchleft {
@@ -91,16 +95,17 @@
 }
 
 #input {
-  width: 30vw;
-  height: 3vw;
+  width: 32vw;
+  height: 2.5vw;
+  margin-left: 4vw; /* Add margin to accommodate the search icon */
 }
 
-#textinputchange,
-#textinput {
-  width: 30vw;
-  height: 3vw;
+#textinput,
+#textinputchange {
+  width: 32vw;
+  height: 2.5vw;
   border: 0.07vw solid #000;
-  padding: 0 0.56vw; /* Horizontal padding */
+  padding: 0 0.56vw;
   outline: none;
   margin: 0;
   box-sizing: border-box;
@@ -109,8 +114,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 1vw; /* Adjust font size */
-  line-height: 3vw; /* Match line height with input height */
+  font-size: 1vw;
+  line-height: 2.5vw;
 }
 
 #textinput {
@@ -128,12 +133,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 0.1vw solid #000;
+  border: 0.07vw solid #000;
   border-radius: 0 2vw 2vw 0;
-  width: 3vw;
-  height: 2.9vw;
+  width: 4vw;
+  height: 2.4vw;
+  padding: 0;
   background-color: #fff;
-  margin: 0;
 }
 
 #searchicon {
@@ -142,14 +147,15 @@
 
 #mic {
   cursor: pointer;
-  height: 3vw;
-  width: 3vw;
+  height: 2vw;
+  width: 2vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: auto 0.5vw;
+  margin: 0 0.5vw;
   border-radius: 50%;
   background-color: aliceblue;
+  flex-shrink: 0;
 }
 
 #micicon {

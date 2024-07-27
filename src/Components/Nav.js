@@ -6,7 +6,7 @@ import { faUser } from '@fortawesome/free-regular-svg-icons';
 import logo from './Images/logo.svg';
 
 export default function Nav() {
-  const [ChangeID, setChangeID] = useState(false);
+  const [ChangeID, setChangeID] = useState(true);
 
   const handleLeftSearch = () => {
     setChangeID(true);
@@ -29,9 +29,14 @@ export default function Nav() {
             <FontAwesomeIcon icon={faSearch} id='searchicon' />
           </div>
           <div id="input">
-            <input type="text" placeholder="Search" id={!ChangeID ? 'textinput' : 'textinputchange'} onClick={handleLeftSearch} onBlur={dontShowLeftSearch} />
+            <input
+              type="text"
+              placeholder="Search"
+              id={!ChangeID ? 'textinput' : 'textinputchange'}
+              onClick={handleLeftSearch}
+              onBlur={dontShowLeftSearch}
+            />
           </div>
-
 
           <div id="search">
             <FontAwesomeIcon icon={faSearch} id='searchicon' />
@@ -41,6 +46,8 @@ export default function Nav() {
           <FontAwesomeIcon icon={faMicrophone} id='micicon' />
         </div>
       </div>
+
+
 
       <div id="right">
         <FontAwesomeIcon icon={faVideoSlash} className='icon' />

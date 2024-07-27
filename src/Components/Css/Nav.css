@@ -1,20 +1,21 @@
 #nav {
   position: fixed;
-  top: 0;
+  top: 0.5vw;
   left: 0;
   width: 100vw;
   height: 3vw;
-  background-color: #f8f8f8;
+  background-color: white;
   /* border-bottom: solid 1px black; */
   display: flex;
   align-items: center;
   justify-content: space-between;
   z-index: 1000;
   box-sizing: border-box;
-  padding: 0 2vw; /* Use vw for responsive padding */
+  padding: 0 2vw;
 }
-
+/* ------------------------------------------------------------------------------------------ */
 #left {
+  /*left div containing baricon and youtubeicon */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,6 +25,7 @@
 }
 
 #baricon {
+  /* bar icon is the actual element */
   cursor: pointer;
   padding: 1vw;
   height: 1.2vw;
@@ -31,12 +33,14 @@
 }
 
 #logoimg {
+  /* logoimg is the actual element */
   height: 6vw;
   width: 6vw;
   padding: 1vw;
 }
-
+/* ------------------------------------------------------------------------------------------ */
 #right {
+  /* right div containing search icon, mic icon and apps icon */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,74 +51,111 @@
 }
 
 #right .icon {
+  /* icon is the actual element */
   padding: 1vw;
   height: 1.5vw;
   width: 1.5vw;
 }
 
+/* ----------------------------------------------------------------------------------------------- */
 #midpart {
+  /* midpart div containing input field and search icon */
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: 3vw;
   width: auto;
   /* border: solid 1px green; */
 }
 
+#input-container {
+  /* input-container is the div containing the left searchicon, input field and right search icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 5vw;
+}
+#search-left {
+  /* search-left is the div containing the left search icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.1vw solid #000;
+  border-radius: 2vw 0 0 2vw;
+  padding: 0.8vw;
+  width: 3vw;
+  height: 0.5vw;
+  background-color: white;
+  border-right: none;
+}
+
 #dontshow-searchleft {
+  /* dontshow-searchleft is the div containing the left search icon */
   display: none;
 }
 
-#search-left {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #000; /* Add a border to the search icon */
-  border-radius: 20px 0px 0px 20px; /* Add border-radius to the right side */
-  padding: 8px;
-  width: 45px;
-  position: absolute;
-  left: 0;
-  background-color: #fff; /* Set background color to match input field */
-  border-right: none;
-}
 #input {
-  width: 100%;
-  flex-grow: 1;
-  margin-left: 40px;/* Add border-radius to the right side */
+  /* input is the div containing the input field */
+  width: 30vw;
 }
-
-#search {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #000; 
-  border-radius: 0 20px 20px 0; /* Add border-radius to the right side */
-  padding: 10px;
-  width: auto;
-  background-color: #fff; /* Set background color to match input field */
-  margin: 0%;}
-#searchicon {
-  font-size: 9px;
+#textinputchange {
+  width: 30vw;
+  border: 0.07vw solid #000;
+  padding: 0.56vw;
+  border-left: none;
+  border-right: none;
+  outline: none; /* Remove default input field outline */
 }
 
 #textinput {
-  width: 100%;
-  border: 1px solid #000;
+  width: 30vw;
+  border: 0.07vw solid #000;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  padding: 8px;
+  padding: 0.56vw;
   outline: none; /* Remove default input field outline */
   margin: 0%;
   border-right: none;
 }
 
-#textinputchange {
-  width: 100%;
-  border: 1px solid #000;
-  padding: 8px;
-  border-left: none;
-  border-right: none;
-  outline: none;
+#search {
+  /* search is a div containing the right search icon */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.1vw solid #000;
+  border-radius: 0 2vw 2vw 0;
+  padding: 0.8vw;
+  width: 3vw;
+  height: 0.5vw;
+  background-color: #fff;
+  margin: 0vw;
 }
+
+#searchicon {
+  /* searchicon is the actual element */
+  font-size: 1vw;
+}
+
+#mic {
+  /* mic is the div containing micicon */
+  cursor: pointer;
+  padding: 1vw;
+  height: 0.9vw;
+  width: 0.9vw;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  /* border: #000 solid 0.1vw; */
+  margin: auto 0.5vw;
+  border-radius: 50%;
+  background-color: aliceblue;
+}
+
+#micicon {
+  /* micicon is the actual element */
+  font-size: 1.2vw;
+}
+/* ------------------------------------------------------------------------------------------ */

@@ -24,18 +24,22 @@ export default function Nav() {
       </div>
 
       <div id="midpart">
-        <div id={ChangeID ? 'search-left' : 'dontshow-searchleft'}>
-          <FontAwesomeIcon icon={faSearch} id='searchicon' />
+        <div id="input-container">
+          <div id={ChangeID ? 'search-left' : 'dontshow-searchleft'}>
+            <FontAwesomeIcon icon={faSearch} id='searchicon' />
+          </div>
+          <div id="input">
+            <input type="text" placeholder="Search" id={!ChangeID ? 'textinput' : 'textinputchange'} onClick={handleLeftSearch} onBlur={dontShowLeftSearch} />
+          </div>
+
+
+          <div id="search">
+            <FontAwesomeIcon icon={faSearch} id='searchicon' />
+          </div>
         </div>
-        <div id="input">
-          <input type="text" placeholder="Search" id={!ChangeID ? 'textinput' : 'textinputchange'} onClick={handleLeftSearch} onBlur={dontShowLeftSearch} />
-        </div>
-        <div id="search">
-          <FontAwesomeIcon icon={faSearch} id='searchicon' />
-        </div>
-        {/* <div id="mic">
+        <div id="mic">
           <FontAwesomeIcon icon={faMicrophone} id='micicon' />
-        </div> */}
+        </div>
       </div>
 
       <div id="right">

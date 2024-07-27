@@ -6,7 +6,7 @@ import { faUser } from '@fortawesome/free-regular-svg-icons';
 import logo from './Images/logo.svg';
 
 export default function Nav() {
-  const [ChangeID, setChangeID] = useState(true);
+  const [ChangeID, setChangeID] = useState(false);
 
   const handleLeftSearch = () => {
     setChangeID(true);

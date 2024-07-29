@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/YouTube/static/css/main.f34b0406.css",
-    "main.js": "/YouTube/static/js/main.5f34ccff.js",
+    "main.css": "/YouTube/static/css/main.a00e9ab4.css",
+    "main.js": "/YouTube/static/js/main.3c5bc417.js",
     "static/js/453.1d07c4bd.chunk.js": "/YouTube/static/js/453.1d07c4bd.chunk.js",
     "static/media/logo.svg": "/YouTube/static/media/logo.691280b95749fdd96347c4478132f58c.svg",
+    "static/media/shorts.svg": "/YouTube/static/media/shorts.8e666f30e47de5a5083f5e45a232c2e0.svg",
     "index.html": "/YouTube/index.html",
-    "main.f34b0406.css.map": "/YouTube/static/css/main.f34b0406.css.map",
-    "main.5f34ccff.js.map": "/YouTube/static/js/main.5f34ccff.js.map",
+    "main.a00e9ab4.css.map": "/YouTube/static/css/main.a00e9ab4.css.map",
+    "main.3c5bc417.js.map": "/YouTube/static/js/main.3c5bc417.js.map",
     "453.1d07c4bd.chunk.js.map": "/YouTube/static/js/453.1d07c4bd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f34b0406.css",
-    "static/js/main.5f34ccff.js"
+    "static/css/main.a00e9ab4.css",
+    "static/js/main.3c5bc417.js"
   ]
 }

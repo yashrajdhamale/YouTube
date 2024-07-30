@@ -5,34 +5,36 @@ import { faHouse } from '@fortawesome/free-solid-svg-icons';
 import short from './Images/shorts.svg';
 import subscription from './Images/subscription.png';
 import you from './Images/you.png';
+import { Link } from 'react-router-dom';
+
+
 
 export default function Sidenav() {
   return (
     <div className='Sidenav'>
       <div className="firsticon">
-        <a href="http://">
+        <Link to="/">
           <FontAwesomeIcon id='ii' icon={faHouse} />
-
           <h1 >Home</h1>
-        </a>
+        </Link>
       </div>
       <div className="firsticon">
-        <a href="http://">
+        <Link to="/shorts">
           <img src={short} alt="" id='shorts' />
           <h1 >Shorts</h1>
-        </a>
+        </Link>
       </div>
       <div className="firsticon">
-        <a href="http://">
+        <Link to="/subscription">
           <img src={subscription} alt="" id="subscription" />
           <h1 >Subscription</h1>
-        </a>
+        </Link>
       </div>
       <div className="firsticon">
-        <a href="http://">
+        <Link to="/you">
           <img src={you} alt="" id="you" />
           <h1 >You</h1>
-        </a>
+        </Link>
       </div>
     </div>
   );

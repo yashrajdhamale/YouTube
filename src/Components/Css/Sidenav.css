@@ -1,9 +1,9 @@
 .Sidenav {
   position: fixed;
   top: 4vw; /* Right below the navbar */
-  left: 1vw;
+  left: 0vw;
   width: 5vw;
-  height: auto;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,6 +20,7 @@
   margin-top: 1.5vw;
   width: 5vw;
   height: 5vw;
+  margin-left: 2.5vw;
   /* font-size: min(2.5vw, 2.5vw); */
   color: black;
 }
@@ -35,6 +36,7 @@
 }
 
 .firsticon a h1{
+  /* margin-left: 2vw; */
   text-decoration: none;
   font-weight: normal;
   padding: 0;
@@ -46,8 +48,12 @@
 
 }
 .firsticon a img {
+  /* margin-left: 2vw; */
   width: 1.5vw;
   height: 1.5vw;
-  margin: 0;
+  
   padding: 0;
+}
+#ii{
+  /* margin-left: 2vw; */
 }

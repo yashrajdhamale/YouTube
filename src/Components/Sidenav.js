@@ -11,7 +11,7 @@ export default function Sidenav() {
     <div className='Sidenav'>
       <div className="firsticon">
         <a href="http://">
-          <FontAwesomeIcon icon={faHouse} />
+          <FontAwesomeIcon id='ii' icon={faHouse} />
 
           <h1 >Home</h1>
         </a>

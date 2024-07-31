@@ -3,7 +3,7 @@
   top: 4vw; /* Right below the navbar */
   left: 0vw;
   width: 5vw;
-  height: 100%;
+  height: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,18 +11,21 @@
   margin-top: 0;
   background-color: white; /* Adjust as needed */
   z-index: 999;
+  padding: 0.1vw;
+
 }
 
 .firsticon {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1.5vw;
+  padding-top: 0.7vw;
   width: 5vw;
   height: 5vw;
-  margin-left: 2.5vw;
+  /* margin-left: 2.5vw; */
   /* font-size: min(2.5vw, 2.5vw); */
   color: black;
+  padding-left: 0.1vw;
 }
 
 .firsticon a {
@@ -33,14 +36,16 @@
   align-items: center;
   justify-content: center;
   font-size: 1.5vw;
+  padding-left: 0.1vw;
 }
 
 .firsticon a h1{
   /* margin-left: 2vw; */
   text-decoration: none;
   font-weight: normal;
-  padding: 0;
+  padding-top: 0.4vw;
   display: flex;
+  margin: 0;
   align-items: center;
   justify-self: center;
   text-align: center;
@@ -51,7 +56,7 @@
   /* margin-left: 2vw; */
   width: 1.5vw;
   height: 1.5vw;
-  
+  padding-left: 0.1vw;
   padding: 0;
 }
 #ii{

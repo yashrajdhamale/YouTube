@@ -3,7 +3,7 @@
   top: 0vw;
   left: 0;
   width: 100vw;
-  height: 3vw;
+  height: 5vw;
   background-color: white;
   /* border-bottom: solid 1px black; */
   display: flex;
@@ -11,7 +11,7 @@
   justify-content: space-between;
   z-index: 1000;
   box-sizing: border-box;
-  padding:  2vw;
+  padding:  1vw;
 }
 /* ------------------------------------------------------------------------------------------ */
 #left {

@@ -13,7 +13,7 @@ export default function Sidenav() {
   return (
     <div className='Sidenav'>
       <div className="firsticon">
-        <Link to="/">
+        <Link to="/YouTube">
           <FontAwesomeIcon id='ii' icon={faHouse} />
           <h1 >Home</h1>
         </Link>

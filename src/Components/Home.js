@@ -3,17 +3,25 @@ import jsonData from './data.json';
 import './Css/Home.css'; // Import the CSS file
 
 export default function Home() {
-  const [data, setData] = useState(null);
-  const [loaded, setLoaded] = useState(false);
+  const [data, setData] = useState([]);
 
+  // let fetchData = async () => {
+  //   try {
+  //     let result = await fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&regionCode=in&maxResults=50&key=AIzaSyAMMZLJ7ATjIYAdz-atxV-vPv1e1xumFRc');
+  //     let data = await result.json();
+  //     console.log('Data fetched:', data);
+  //     setData(data);
+  //   } catch (error) {
+  //     console.error('Error fetching data:', error);
+  //   }
+  // }
   useEffect(() => {
     setTimeout(() => {
-      setData(jsonData);
-      setLoaded(true); // We'll use this for top loading red bar
+      setData(jsonData.items); // Assuming jsonData.items is an array
     }, 10);
   }, []);
 
-  function timeSinceUpload(uploadDate) {
+  const timeSinceUpload = (uploadDate) => {
     const now = new Date();
     const uploadTime = new Date(uploadDate);
 
@@ -47,10 +55,26 @@ export default function Home() {
     }
     return seconds + " second" + (seconds > 1 ? "s" : "") + " ago";
   }
+
+  useEffect(() => {
+    const loadMoreData = () => {
+      if (window.innerHeight + document.documentElement.scrollTop + 1 >= document.documentElement.scrollHeight) {
+        setData(prevData => prevData.concat(jsonData.items)); // Assuming jsonData.items is an array
+      }
+    };
+
+    window.addEventListener("scroll", loadMoreData);
+
+    // Cleanup function to remove event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", loadMoreData);
+    };
+  }, []);
+
   return (
     <div id="home">
-      {data ? (
-        data.items.map((e) => (
+      {data.length > 0 ? (
+        data.map((e) => (
           <div key={e.id} className="video-item">
             <img
               src={e.snippet.thumbnails.maxres ? e.snippet.thumbnails.maxres.url : e.snippet.thumbnails.high.url}
@@ -62,7 +86,6 @@ export default function Home() {
             <div id="view_time">
               <p>viewcount</p>
               <p id='publishdate'>{timeSinceUpload(e.snippet.publishedAt)}</p>
-
             </div>
           </div>
         ))
@@ -74,18 +97,3 @@ export default function Home() {
 }
 
 
-
-
-
-
-// Commented out fetchData function (unused)
-// let fetchData = async () => {
-//   try {
-//     let result = await fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&regionCode=in&maxResults=50&key=AIzaSyAMMZLJ7ATjIYAdz-atxV-vPv1e1xumFRc');
-//     let data = await result.json();
-//     console.log('Data fetched:', data);
-//     setData(data);
-//   } catch (error) {
-//     console.error('Error fetching data:', error);
-//   }
-// }

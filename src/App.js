@@ -8,11 +8,13 @@ import Sidenav from './Components/Sidenav';
 function App() {
   const [query, setQuery] = useState('');
 
+  const resetQuery = () => setQuery(''); // Function to reset query
+
   return (
     <Router>
       <div className="App">
         <Nav setQuery={setQuery} />
-        <Sidenav />
+        <Sidenav resetQuery={resetQuery} />
         <Routes>
           <Route path="/YouTube" element={<Home query={query} />} />
           <Route path="/shorts" element={<div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100vh" }}>Shorts Page</div>} />

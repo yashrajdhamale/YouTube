@@ -144,6 +144,10 @@
 #searchicon {
   font-size: 1vw;
 }
+#search:hover {
+  background-color: rgb(202, 228, 251);
+  /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); */
+}
 
 #mic {
   cursor: pointer;

@@ -5,8 +5,13 @@ import { faSearch, faMicrophone, faVideoSlash, faBell, faBars } from '@fortaweso
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import logo from './Images/logo.svg';
 
-export default function Nav() {
+export default function Nav({ setQuery }) {
   const [ChangeID, setChangeID] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+
+  const handleSearch = () => {
+    setQuery(inputValue);
+  }
 
   const handleLeftSearch = () => {
     setChangeID(true);
@@ -35,19 +40,18 @@ export default function Nav() {
               id={!ChangeID ? 'textinput' : 'textinputchange'}
               onClick={handleLeftSearch}
               onBlur={dontShowLeftSearch}
+              onChange={(e) => setInputValue(e.target.value)}
             />
           </div>
 
-          <div id="search">
-            <FontAwesomeIcon icon={faSearch} id='searchicon' />
+          <div id="search" onClick={handleSearch}>
+            <FontAwesomeIcon icon={faSearch} id='searchicon'  />
           </div>
         </div>
         <div id="mic">
           <FontAwesomeIcon icon={faMicrophone} id='micicon' />
         </div>
       </div>
-
-
 
       <div id="right">
         <FontAwesomeIcon icon={faVideoSlash} className='icon' />

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import './Css/Home.css'; // Import the CSS file
+import './Css/Home.css';
 
 const apiKeys = [
   'AIzaSyB8xe-pC_uYbBOdQ9_JldZxJHyZyxGZ2gU',
@@ -8,25 +8,52 @@ const apiKeys = [
   'AIzaSyAMMZLJ7ATjIYAdz-atxV-vPv1e1xumFRc'
 ];
 
-export default function Home() {
+export default function Home({ query }) {
   const [data, setData] = useState([]);
   const [pageToken, setToken] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [apiKeyIndex, setApiKeyIndex] = useState(0);
 
-  const fetchData = useCallback(async (token) => {
+  const fetchVideoDetails = async (videoIds) => {
+    try {
+      const result = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoIds.join(',')}&key=${apiKeys[apiKeyIndex]}`);
+      if (result.ok) {
+        return await result.json();
+      }
+    } catch (error) {
+      console.error(`Error fetching video details:`, error);
+    }
+    return null;
+  };
+
+  const fetchData = useCallback(async (token = '') => {
     setIsLoading(true);
     let success = false;
     for (let i = apiKeyIndex; i < apiKeys.length; i++) {
       try {
-        const result = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&chart=mostPopular&regionCode=IN&maxResults=50&pageToken=${token}&key=${apiKeys[i]}`);
+        const endpoint = query === '' 
+          ? `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&chart=mostPopular&regionCode=IN&maxResults=20&pageToken=${token}&key=${apiKeys[i]}`
+          : `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&pageToken=${token}&q=${query}&key=${apiKeys[i]}`;
+
+        console.log(`Fetching data from endpoint: ${endpoint}`); // Debug log
+
+        const result = await fetch(endpoint);
+
         if (result.ok) {
           const data = await result.json();
-          setData(prevData => [...prevData, ...data.items]);
+          const videoIds = data.items.map(item => item.id.videoId || item.id);
+          const videoDetails = await fetchVideoDetails(videoIds);
+          
+          const videosWithDetails = data.items.map((item, index) => ({
+            ...item,
+            statistics: videoDetails ? videoDetails.items[index]?.statistics : null
+          }));
+
+          console.log(`Data fetched:`, videosWithDetails); // Debug log
+          setData(prevData => (token ? [...prevData, ...videosWithDetails] : videosWithDetails));
           setToken(data.nextPageToken || '');
-          setApiKeyIndex(i); // Save the index of the working key
+          setApiKeyIndex(i);
           success = true;
-          console.log(data);
           break;
         }
       } catch (error) {
@@ -37,11 +64,12 @@ export default function Home() {
       console.error('All API keys have been exhausted or are invalid.');
     }
     setIsLoading(false);
-  }, [apiKeyIndex]);
+  }, [apiKeyIndex, query]);
 
   useEffect(() => {
+    setData([]); // Clear data on new search
     fetchData('');
-  }, [fetchData]);
+  }, [fetchData, query]);
 
   const timeSinceUpload = (uploadDate) => {
     const now = new Date();
@@ -103,7 +131,7 @@ export default function Home() {
     <div id="home">
       {data.length > 0 ? (
         data.map((e, index) => (
-          <div key={`${e.id}_${index}`} className="video-item">
+          <div key={`${e.id.videoId || e.id}_${index}`} className="video-item">
             <img
               src={e.snippet.thumbnails.maxres ? e.snippet.thumbnails.maxres.url : e.snippet.thumbnails.high.url}
               alt={e.snippet.title}
@@ -112,7 +140,7 @@ export default function Home() {
             <h4>{e.snippet.title}</h4>
             <p>{e.snippet.channelTitle}</p>
             <div id="view_time">
-              <p>{formatViewCount(e.statistics.viewCount)} views</p>
+              <p>{e.statistics ? formatViewCount(e.statistics.viewCount) : 'N/A'} views</p>
               <p id='publishdate'>{timeSinceUpload(e.snippet.publishedAt)}</p>
             </div>
           </div>

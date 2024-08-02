@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Css/Home.css';
 
 const apiKeys = [
@@ -9,6 +10,7 @@ const apiKeys = [
 ];
 
 export default function Home({ query }) {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [pageToken, setToken] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +23,7 @@ export default function Home({ query }) {
         return await result.json();
       }
     } catch (error) {
-      console.error(`Error fetching video details:`, error);
+      console.error('Error fetching video details:', error);
     }
     return null;
   };
@@ -29,27 +31,27 @@ export default function Home({ query }) {
   const fetchData = useCallback(async (token = '') => {
     setIsLoading(true);
     let success = false;
+
     for (let i = apiKeyIndex; i < apiKeys.length; i++) {
       try {
         const endpoint = query === '' 
-          ? `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&chart=mostPopular&regionCode=IN&maxResults=20&pageToken=${token}&key=${apiKeys[i]}`
-          : `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&pageToken=${token}&q=${query}&key=${apiKeys[i]}`;
+          ? `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&chart=mostPopular&regionCode=IN&maxResults=30&pageToken=${token}&key=${apiKeys[i]}`
+          : `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=30&pageToken=${token}&q=${query}&key=${apiKeys[i]}`;
 
-        console.log(`Fetching data from endpoint: ${endpoint}`); // Debug log
+        console.log('Fetching data from endpoint:', endpoint);
 
         const result = await fetch(endpoint);
-
         if (result.ok) {
           const data = await result.json();
           const videoIds = data.items.map(item => item.id.videoId || item.id);
           const videoDetails = await fetchVideoDetails(videoIds);
-          
+
           const videosWithDetails = data.items.map((item, index) => ({
             ...item,
             statistics: videoDetails ? videoDetails.items[index]?.statistics : null
           }));
 
-          console.log(`Data fetched:`, videosWithDetails); // Debug log
+          console.log('Data fetched:', videosWithDetails);
           setData(prevData => (token ? [...prevData, ...videosWithDetails] : videosWithDetails));
           setToken(data.nextPageToken || '');
           setApiKeyIndex(i);
@@ -60,9 +62,11 @@ export default function Home({ query }) {
         console.error(`Error fetching data with key ${apiKeys[i]}:`, error);
       }
     }
+
     if (!success) {
       console.error('All API keys have been exhausted or are invalid.');
     }
+
     setIsLoading(false);
   }, [apiKeyIndex, query]);
 
@@ -84,35 +88,23 @@ export default function Home({ query }) {
     const months = Math.floor(days / 30);
     const years = Math.floor(days / 365);
 
-    if (years > 0) {
-      return years + " year" + (years > 1 ? "s" : "") + " ago";
-    }
-    if (months > 0) {
-      return months + " month" + (months > 1 ? "s" : "") + " ago";
-    }
-    if (weeks > 0) {
-      return weeks + " week" + (weeks > 1 ? "s" : "") + " ago";
-    }
-    if (days > 0) {
-      return days + " day" + (days > 1 ? "s" : "") + " ago";
-    }
-    if (hours > 0) {
-      return hours + " hour" + (hours > 1 ? "s" : "") + " ago";
-    }
-    if (minutes > 0) {
-      return minutes + " minute" + (minutes > 1 ? "s" : "") + " ago";
-    }
-    return seconds + " second" + (seconds > 1 ? "s" : "") + " ago";
+    if (years > 0) return `${years} year${years > 1 ? 's' : ''} ago`;
+    if (months > 0) return `${months} month${months > 1 ? 's' : ''} ago`;
+    if (weeks > 0) return `${weeks} week${weeks > 1 ? 's' : ''} ago`;
+    if (days > 0) return `${days} day${days > 1 ? 's' : ''} ago`;
+    if (hours > 0) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+    if (minutes > 0) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+    return `${seconds} second${seconds > 1 ? 's' : ''} ago`;
   };
 
   const formatViewCount = (num) => {
-    if (num >= 1000000) {
-      return (num / 1000000).toFixed(1) + 'M';
-    }
-    if (num >= 1000) {
-      return (num / 1000).toFixed(1) + 'K';
-    }
+    if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+    if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
     return num.toString();
+  };
+
+  const handleVideoClick = (videoId) => {
+    navigate(`/play/${videoId}`);
   };
 
   useEffect(() => {
@@ -121,9 +113,10 @@ export default function Home({ query }) {
         fetchData(pageToken);
       }
     };
-    window.addEventListener("scroll", loadMoreData);
+
+    window.addEventListener('scroll', loadMoreData);
     return () => {
-      window.removeEventListener("scroll", loadMoreData);
+      window.removeEventListener('scroll', loadMoreData);
     };
   }, [fetchData, pageToken, isLoading]);
 
@@ -131,7 +124,11 @@ export default function Home({ query }) {
     <div id="home">
       {data.length > 0 ? (
         data.map((e, index) => (
-          <div key={`${e.id.videoId || e.id}_${index}`} className="video-item">
+          <div
+            key={`${e.id.videoId || e.id}_${index}`}
+            className="video-item"
+            onClick={() => handleVideoClick(e.id.videoId || e.id)}
+          >
             <img
               src={e.snippet.thumbnails.maxres ? e.snippet.thumbnails.maxres.url : e.snippet.thumbnails.high.url}
               alt={e.snippet.title}
@@ -141,7 +138,7 @@ export default function Home({ query }) {
             <p>{e.snippet.channelTitle}</p>
             <div id="view_time">
               <p>{e.statistics ? formatViewCount(e.statistics.viewCount) : 'N/A'} views</p>
-              <p id='publishdate'>{timeSinceUpload(e.snippet.publishedAt)}</p>
+              <p id="publishdate">{timeSinceUpload(e.snippet.publishedAt)}</p>
             </div>
           </div>
         ))

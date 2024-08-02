@@ -1,0 +1,16 @@
+/* Main content area for video */
+.video-player {
+  margin-left: 5vw; /* Account for the sidenav width */
+  margin-top: 6vw;
+  padding: 20px;
+  width: calc(100vw - 15vw);
+  height: calc(100vh - 25vh);
+  background-color: #f4f4f4;
+}
+
+iframe {
+  border: none;
+  margin-left: 3vw;
+  width: 80vw;
+  height: 35vw;
+}

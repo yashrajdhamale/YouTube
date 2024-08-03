@@ -5,7 +5,6 @@
   width: 100vw;
   height: 5vw;
   background-color: white;
-  /* border-bottom: solid 1px black; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,19 +12,16 @@
   box-sizing: border-box;
   padding:  1vw;
 }
-/* ------------------------------------------------------------------------------------------ */
+
 #left {
-  /*left div containing baricon and youtubeicon */
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
   width: auto;
-  /* border: solid 1px red; */
 }
 
 #baricon {
-  /* bar icon is the actual element */
   cursor: pointer;
   padding: 1vw;
   height: 1.5vw;
@@ -33,37 +29,64 @@
 }
 
 #logoimg {
-  /* logoimg is the actual element */
   height: 6.4vw;
   width: 6.4vw;
   padding: 1vw;
 }
-/* ------------------------------------------------------------------------------------------ */
+
 #right {
-  /* right div containing search icon, mic icon and apps icon */
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
   width: auto;
-  /* border: solid 1px blue; */
   padding: 0 2vw;
 }
 
 #right .icon {
-  /* icon is the actual element */
   padding: 1vw;
   height: 1.6vw;
   width: 1.6vw;
 }
 
-/* ----------------------------------------------------------------------------------------------- */
+#user-icon {
+  position: relative;
+  cursor: pointer;
+}
+
+#options-box {
+  position: absolute;
+  top: 3vw; /* Adjust as needed */
+  right: 0;
+  background-color: white;
+  /* border: 0.07vw solid #000; */
+  border-radius: 0.5vw;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+}
+
+.option {
+  padding: 1vw;
+  width: 10vw;
+  font-size: 1vw;
+  cursor: pointer;
+  border-bottom: 0.07vw solid #ddd;
+}
+
+.option:last-child {
+  border-bottom: none;
+}
+
+.option:hover {
+  background-color: #f0f0f0;
+}
+
 #midpart {
   display: flex;
   align-items: center;
   justify-content: center;
   width: auto;
-  position: relative; /* Add relative positioning to #midpart */
+  position: relative;
 }
 
 #input-container {
@@ -76,8 +99,8 @@
 
 #search-left,
 #dontshow-searchleft {
-  position: absolute; /* Use absolute positioning for the search icon */
-  left: 0; /* Position it on the left */
+  position: absolute;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,7 +110,7 @@
   height: 2.4vw;
   background-color: white;
   border-right: none;
-  z-index: 1; /* Ensure it appears above other elements */
+  z-index: 1;
 }
 
 #dontshow-searchleft {
@@ -97,7 +120,7 @@
 #input {
   width: 32vw;
   height: 2.5vw;
-  margin-left: 4vw; /* Add margin to accommodate the search icon */
+  margin-left: 4vw;
 }
 
 #textinput,
@@ -146,7 +169,6 @@
 }
 #search:hover {
   background-color: rgb(202, 228, 251);
-  /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); */
 }
 
 #mic {
@@ -165,5 +187,3 @@
 #micicon {
   font-size: 1.2vw;
 }
-
-/* ------------------------------------------------------------------------------------------ */

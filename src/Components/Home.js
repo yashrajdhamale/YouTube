@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useRef } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Css/Home.css';
 
@@ -9,12 +9,24 @@ const apiKeys = [
   'AIzaSyAMMZLJ7ATjIYAdz-atxV-vPv1e1xumFRc'
 ];
 
-export default function Home({ query }) {
+export default function Home(props) {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [pageToken, setToken] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [apiKeyIndex, setApiKeyIndex] = useState(0);
+
+  const fetchChannelDetails = async (channelIds) => {
+    try {
+      const result = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${channelIds.join(',')}&key=${apiKeys[apiKeyIndex]}`);
+      if (result.ok) {
+        return await result.json();
+      }
+    } catch (error) {
+      console.error('Error fetching channel details:', error);
+    }
+    return null;
+  };
 
   const fetchVideoDetails = async (videoIds) => {
     try {
@@ -34,9 +46,9 @@ export default function Home({ query }) {
 
     for (let i = apiKeyIndex; i < apiKeys.length; i++) {
       try {
-        const endpoint = query === '' 
+        const endpoint = props.query === ''
           ? `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&chart=mostPopular&regionCode=IN&maxResults=30&pageToken=${token}&key=${apiKeys[i]}`
-          : `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=30&pageToken=${token}&q=${query}&key=${apiKeys[i]}`;
+          : `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=30&pageToken=${token}&q=${props.query}&key=${apiKeys[i]}`;
 
         console.log('Fetching data from endpoint:', endpoint);
 
@@ -44,17 +56,21 @@ export default function Home({ query }) {
         if (result.ok) {
           const data = await result.json();
           const videoIds = data.items.map(item => item.id.videoId || item.id);
+          const channelIds = data.items.map(item => item.snippet.channelId);
           const videoDetails = await fetchVideoDetails(videoIds);
+          const channelDetails = await fetchChannelDetails(channelIds);
 
           const videosWithDetails = data.items.map((item, index) => ({
             ...item,
-            statistics: videoDetails ? videoDetails.items[index]?.statistics : null
+            statistics: videoDetails ? videoDetails.items[index]?.statistics : null,
+            channelProfile: channelDetails ? channelDetails.items.find(channel => channel.id === item.snippet.channelId).snippet.thumbnails.default.url : null
           }));
 
           console.log('Data fetched:', videosWithDetails);
           setData(prevData => (token ? [...prevData, ...videosWithDetails] : videosWithDetails));
           setToken(data.nextPageToken || '');
           setApiKeyIndex(i);
+          props.setHomedata(videosWithDetails);
           success = true;
           break;
         }
@@ -68,12 +84,12 @@ export default function Home({ query }) {
     }
 
     setIsLoading(false);
-  }, [apiKeyIndex, query]);
+  }, [apiKeyIndex, props.query]);
 
   useEffect(() => {
-    setData([]); // Clear data on new search
+    setData([]);
     fetchData('');
-  }, [fetchData, query]);
+  }, [fetchData, props.query]);
 
   const timeSinceUpload = (uploadDate) => {
     const now = new Date();
@@ -134,8 +150,18 @@ export default function Home({ query }) {
               alt={e.snippet.title}
               className="video-thumbnail"
             />
-            <h4>{e.snippet.title}</h4>
-            <p>{e.snippet.channelTitle}</p>
+            <div id='title_img'>
+              <img
+                src={e.channelProfile}
+                alt={e.snippet.channelTitle}
+                className="channel-profile"
+              />
+              <h4>{e.snippet.title}</h4>
+            </div>
+
+
+            <p id='channelTitle'>{e.snippet.channelTitle}</p>
+
             <div id="view_time">
               <p>{e.statistics ? formatViewCount(e.statistics.viewCount) : 'N/A'} views</p>
               <p id="publishdate">{timeSinceUpload(e.snippet.publishedAt)}</p>

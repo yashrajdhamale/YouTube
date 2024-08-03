@@ -19,7 +19,6 @@
 
 .video-item:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
   transform: translateY(-2px);
   border-radius: 8px;
   background-color: rgb(240, 230, 230);
@@ -35,9 +34,17 @@
   color: rgb(99, 96, 96);
 }
 
-.video-item h4 {
-  margin-top: 0.5vw;
+#title_img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1vw;
+}
+
+#title_img h4 {
+  margin-top: 0vw;
   margin-bottom: 0;
+  margin-left: 0.5vw;
   padding: 0;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -46,7 +53,7 @@
   text-overflow: ellipsis;
   box-sizing: border-box;
   width: 100%;
-  white-space: normal; /* Ensure text wraps within the container */
+  white-space: normal;
 }
 
 .video-thumbnail {
@@ -66,9 +73,27 @@
 #view_time {
   display: flex;
   margin: 0;
+  margin-left: 2.4vw;
 }
 
 #publishdate {
   margin: 0;
   padding-left: 0.2vw;
+}
+
+.channel-info {
+  display: flex;
+  align-items: center;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+}
+
+.channel-profile {
+  width: 2vw;
+  height: 2vw;
+  border-radius: 50%;
+}
+
+#channelTitle {
+  margin-left: 2.4vw;
 }

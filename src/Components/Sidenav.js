@@ -7,10 +7,10 @@ import subscription from './Images/subscription.png';
 import you from './Images/you.png';
 import { Link } from 'react-router-dom';
 
-export default function Sidenav({ resetQuery }) {
+export default function Sidenav(props) {
   return (
     <div className='Sidenav'>
-      <div className="firsticon" onClick={resetQuery}>
+      <div className="firsticon" onClick={props.resetQuery}>
         <Link to="/YouTube">
           <FontAwesomeIcon id='ii' icon={faHouse} />
           <h1>Home</h1>

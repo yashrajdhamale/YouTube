@@ -151,7 +151,7 @@
   border-right: none;
 }
 
-#search {
+#searchright {
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -167,7 +167,7 @@
 #searchicon {
   font-size: 1vw;
 }
-#search:hover {
+#searchright:hover {
   background-color: rgb(202, 228, 251);
 }
 
@@ -186,4 +186,32 @@
 
 #micicon {
   font-size: 1.2vw;
+}
+#suggestions-box {
+  position: absolute;
+  top: 3.8vw; /* Position below the search input */
+  left: 27vw;
+  width: 40vw; /* Same width as the input */
+  background-color: white;
+  /* border: 0.07vw solid #000; */
+  border-radius: 1vw;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+  
+  overflow-y: auto; /* Scroll if too many suggestions */
+}
+
+.suggestion-item {
+  padding: 1vw;
+  font-size: 1vw;
+  cursor: pointer;
+  border-bottom: 0.07vw solid #ddd;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0;
 }

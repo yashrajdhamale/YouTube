@@ -3,14 +3,21 @@ import './Css/Sidenav.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
 import short from './Images/shorts.svg';
+import { useNavigate } from 'react-router-dom';
 import subscription from './Images/subscription.png';
 import you from './Images/you.png';
 import { Link } from 'react-router-dom';
 
 export default function Sidenav(props) {
+  const navigate = useNavigate();
+  const handleHomeClick = () => {
+    props.resetQuery(); 
+    window.scrollTo(0, 0); 
+    navigate('/YouTube'); 
+  };
   return (
     <div className='Sidenav'>
-      <div className="firsticon" onClick={props.resetQuery}>
+      <div className="firsticon" onClick={handleHomeClick}>
         <Link to="/YouTube">
           <FontAwesomeIcon id='ii' icon={faHouse} />
           <h1>Home</h1>

@@ -21,7 +21,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transform: translateY(-2px);
   border-radius: 8px;
-  background-color: rgb(240, 230, 230);
+  background-color: rgb(239, 235, 235);
 }
 
 .video-item:hover .video-thumbnail {
@@ -49,6 +49,8 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
   box-sizing: border-box;
@@ -89,8 +91,8 @@
 }
 
 .channel-profile {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
 }
 

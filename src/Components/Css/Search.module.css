@@ -1,0 +1,83 @@
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
+  padding: 6vw;
+  box-sizing: border-box;
+}
+
+.videoItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.videoItem:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.videoThumbnail {
+  width: 40vw;
+  height: 20vw;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.videoContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60%;
+  top: 0%;
+}
+
+.videoHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1vw;
+}
+
+.channelProfile {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.videoTitle {
+  margin: 0;
+  margin-bottom: 0.5vw;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+.channelTitle {
+  margin: 0;
+}
+
+.viewTimeInfo {
+  display: flex;
+  gap: 1vw;
+}
+
+.viewCount,
+.publishDate {
+  margin: 0;
+}
+
+.loadingMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}

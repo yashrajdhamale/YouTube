@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faMicrophone, faVideoSlash, faBell, faBars } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons'; // Import the correct icon
 import logo from './Images/logo.svg';
 
 const apiKeys = [
@@ -12,6 +13,7 @@ const apiKeys = [
   'AIzaSyAMMZLJ7ATjIYAdz-atxV-vPv1e1xumFRc',
   'AIzaSyCm7wv1C0aPDlGK3OPUfYVGIEcCXG3Sk54',
   'AIzaSyDlgGSs2w32aedBgJ5PLbvIurfTBH7T0P8',
+  'AIzaSyDH_Q0cvzezf5JMROkPzMMOA_PkE5qpMFY',
   'AIzaSyDb1i8QG2CVrsmyP-6aUaLo1_M4W4f8yzU', 
   'AIzaSyCI6-RU1-yZF_oIDbWmV9zrMhKdznPgtxY',
   'AIzaSyDRfXr8A16LH1Upyod1p3uwm-JSiBRk84Y'
@@ -115,6 +117,11 @@ export default function Nav(props) {
     }, 100); // Delay the blur handling
   };
 
+  const clearInput = () => {
+    setInputValue('');
+    setSuggestions([]); // Clear suggestions when input is cleared
+  };
+
   return (
     <div id="nav">
       <div id="left">
@@ -139,7 +146,11 @@ export default function Nav(props) {
               value={inputValue} // Update input value
               aria-label="Search"
               style={{ userSelect: 'none' }}
+              autoComplete='off'
             />
+            {inputValue && (
+              <FontAwesomeIcon icon={faXmark} id="clear-icon" onClick={clearInput} /> // Use the faXmark icon
+            )}
           </div>
           <div id="searchright" onClick={handleSearch}>
             <FontAwesomeIcon icon={faSearch} id='searchicon' />

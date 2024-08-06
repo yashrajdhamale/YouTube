@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './Css/PlayVideo.css';
 
 function PlayVideo(props) {
   const { videoId } = useParams();
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top when the component is mounted
+  }, [videoId]); // Re-run the effect when videoId changes
 
   const formatViewCount = (num) => {
     if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';

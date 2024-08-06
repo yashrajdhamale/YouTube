@@ -6,6 +6,7 @@ import PlayVideo from './Components/PlayVideo';
 import Nav from './Components/Nav';
 import Sidenav from './Components/Sidenav';
 import Search from './Components/Search';
+import LoadingLine from './Components/LoadingLine';
 function App() {
 
   const [query, setQuery] = useState(''); // used the set the search input from the nav and pass it to the search component
@@ -18,6 +19,7 @@ function App() {
 
     <Router>
       <div className="App">
+        <LoadingLine/>
         <Nav setQuery={setQuery} />
         <Sidenav resetQuery={resetQuery} />
         <Routes>

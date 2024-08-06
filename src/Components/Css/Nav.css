@@ -1,3 +1,5 @@
+/* Css/Nav.css */
+
 #nav {
   position: fixed;
   top: 0vw;
@@ -10,7 +12,7 @@
   justify-content: space-between;
   z-index: 1000;
   box-sizing: border-box;
-  padding:  1vw;
+  padding: 1vw;
 }
 
 #left {
@@ -121,6 +123,7 @@
   width: 32vw;
   height: 2.5vw;
   margin-left: 4vw;
+  position: relative; /* Add this to position the clear icon */
 }
 
 #textinput,
@@ -167,6 +170,7 @@
 #searchicon {
   font-size: 1vw;
 }
+
 #searchright:hover {
   background-color: rgb(202, 228, 251);
 }
@@ -187,6 +191,19 @@
 #micicon {
   font-size: 1.2vw;
 }
+
+#clear-icon {
+  position: absolute;
+  right: 0.2vw; /* Adjust this as needed to position the clear icon */
+  
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background-color: white;
+  height: 2.3vw;
+  width: 1.5vw;
+}
+
 #suggestions-box {
   position: absolute;
   top: 3.8vw; /* Position below the search input */
@@ -197,7 +214,6 @@
   border-radius: 1vw;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   z-index: 1001;
-  
   overflow-y: auto; /* Scroll if too many suggestions */
 }
 

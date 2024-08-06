@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Css/Search.module.css';
+import LoadingLine from './LoadingLine';
 
 const apiKeys = [
   'AIzaSyB8xe-pC_uYbBOdQ9_JldZxJHyZyxGZ2gU',
@@ -8,6 +9,7 @@ const apiKeys = [
   'AIzaSyAMMZLJ7ATjIYAdz-atxV-vPv1e1xumFRc',
   'AIzaSyCm7wv1C0aPDlGK3OPUfYVGIEcCXG3Sk54',
   'AIzaSyDlgGSs2w32aedBgJ5PLbvIurfTBH7T0P8',
+  'AIzaSyDH_Q0cvzezf5JMROkPzMMOA_PkE5qpMFY',
   'AIzaSyDb1i8QG2CVrsmyP-6aUaLo1_M4W4f8yzU', 
   'AIzaSyCI6-RU1-yZF_oIDbWmV9zrMhKdznPgtxY',
   'AIzaSyDRfXr8A16LH1Upyod1p3uwm-JSiBRk84Y'
@@ -99,7 +101,6 @@ export default function Search({ query, setHomedata }) {
   useEffect(() => {
     setData([]);
     fetchData('', 0);
-    window.scrollTo(0, 0); // Scroll to the top whenever the component is loaded or the query changes
   }, [fetchData, query]);
 
   const timeSinceUpload = (uploadDate) => {
@@ -153,6 +154,7 @@ export default function Search({ query, setHomedata }) {
 
   return (
     <div className={styles.searchContainer}>
+      <LoadingLine isLoading={isLoading} />
       {data.length > 0 ? (
         data.map((e, index) => (
           <div
@@ -167,25 +169,25 @@ export default function Search({ query, setHomedata }) {
             />
             <div className={styles.videoContent}>
               <div className={styles.videoHeader}>
-                <img
-                  src={e.channelProfile}
-                  alt={e.snippet.channelTitle}
-                  className={styles.channelProfile}
-                />
-                <h4 className={styles.videoTitle}>{e.snippet.title}</h4>
+                <h3 className={styles.videoTitle}>{e.snippet.title}</h3>
+                <div className={styles.videoChannel}>
+                  <img
+                    src={e.channelProfile}
+                    alt={e.snippet.channelTitle}
+                    className={styles.channelProfile}
+                  />
+                  <span className={styles.channelTitle}>{e.snippet.channelTitle}</span>
+                </div>
               </div>
-              <div className={styles.viewTimeInfo}>
-                <p className={styles.viewCount}>
-                  {e.statistics && e.statistics.viewCount ? formatViewCount(parseInt(e.statistics.viewCount)) : 'N/A'} views
-                </p>
-                <p className={styles.publishDate}>{timeSinceUpload(e.snippet.publishedAt)}</p>
+              <div className={styles.videoMeta}>
+                <span>{formatViewCount(parseInt(e.statistics.viewCount))} views</span>
+                <span>{timeSinceUpload(e.snippet.publishedAt)}</span>
               </div>
-              <p className={styles.channelTitle}>{e.snippet.channelTitle}</p>
             </div>
           </div>
         ))
       ) : (
-        <p className={styles.loadingMessage}>Loading data...</p>
+        <p></p>
       )}
     </div>
   );

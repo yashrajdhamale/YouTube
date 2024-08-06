@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Css/Home.css';
+import LoadingLine from './LoadingLine';
 
 const apiKeys = [
   'AIzaSyB8xe-pC_uYbBOdQ9_JldZxJHyZyxGZ2gU',
@@ -8,6 +9,7 @@ const apiKeys = [
   'AIzaSyAMMZLJ7ATjIYAdz-atxV-vPv1e1xumFRc',
   'AIzaSyCm7wv1C0aPDlGK3OPUfYVGIEcCXG3Sk54',
   'AIzaSyDlgGSs2w32aedBgJ5PLbvIurfTBH7T0P8',
+  'AIzaSyDH_Q0cvzezf5JMROkPzMMOA_PkE5qpMFY',
   'AIzaSyDb1i8QG2CVrsmyP-6aUaLo1_M4W4f8yzU', 
   'AIzaSyCI6-RU1-yZF_oIDbWmV9zrMhKdznPgtxY',
   'AIzaSyDRfXr8A16LH1Upyod1p3uwm-JSiBRk84Y'
@@ -24,8 +26,7 @@ export default function Home(props) {
     try {
       const result = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${channelIds.join(',')}&key=${apiKeys[apiKeyIndex]}`);
       if (result.ok) {
-        const ChannelDetails = await result.json(); // Call json() only once
-        console.log("channeldetails", ChannelDetails);
+        const ChannelDetails = await result.json();
         return ChannelDetails;
       }
     } catch (error) {
@@ -38,8 +39,7 @@ export default function Home(props) {
     try {
       const result = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoIds.join(',')}&key=${apiKeys[apiKeyIndex]}`);
       if (result.ok) {
-        const videoDetails = await result.json(); // Call json() only once
-        console.log("videodetails", videoDetails);
+        const videoDetails = await result.json();
         return videoDetails;
       }
     } catch (error) {
@@ -72,7 +72,6 @@ export default function Home(props) {
             channelProfile: channelDetails ? channelDetails.items.find(channel => channel.id === item.snippet.channelId).snippet.thumbnails.default.url : null
           }));
 
-          console.log('Data fetched:', videosWithDetails);
           setData(prevData => (token ? [...prevData, ...videosWithDetails] : videosWithDetails));
           setToken(data.nextPageToken || '');
           setApiKeyIndex(i);
@@ -127,7 +126,6 @@ export default function Home(props) {
 
   const handleVideoClick = (videoId) => {
     props.setHomedata(data);
-    console.log("data sent to playvideo", data);
     navigate(`/play/${videoId}`);
   };
 
@@ -146,6 +144,7 @@ export default function Home(props) {
 
   return (
     <div id="home">
+      <LoadingLine isLoading={isLoading} />
       {data.length > 0 ? (
         data.map((e, index) => (
           <div
@@ -174,10 +173,8 @@ export default function Home(props) {
           </div>
         ))
       ) : (
-        <p className="loading-message">Loading data...</p>
+        <p className="loading-message"></p>
       )}
     </div>
   );
 }
-
-

@@ -165,7 +165,7 @@ export default function Nav(props) {
         <FontAwesomeIcon icon={faVideoSlash} className='icon' />
         <FontAwesomeIcon icon={faBell} className='icon' />
         <div id="user-icon" onClick={toggleOptions}>
-          <FontAwesomeIcon icon={faUser} className='icon' />
+          {/* fetch the icon data */}
           {showOptions && (
             <div id="options-box">
               <div className="option" onClick={loadLoginPage}>Login</div>

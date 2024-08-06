@@ -40,10 +40,12 @@ function PlayVideo(props) {
                   />
                   <span>{e.snippet.channelTitle}</span>
                 </div>
-                <p className="publish-date">{new Date(e.snippet.publishedAt).toDateString()}</p>
                 <div className="view-count">
                   <p>{e.statistics ? formatViewCount(e.statistics.viewCount) : 'N/A'} views</p>
+                  <p className="publish-date">{new Date(e.snippet.publishedAt).toDateString()}</p>
                 </div>
+                
+
                 <div className="description">
                   <p>{e.snippet.description}</p>
                 </div>

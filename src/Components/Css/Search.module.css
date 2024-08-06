@@ -8,35 +8,28 @@
 
 .videoItem {
   display: flex;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
   padding: 10px;
   border-radius: 8px;
 }
 
 .videoItem:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transform: translateY(-2px);
 }
 
 .videoThumbnail {
-  width: 40vw;
+  width: 35vw;
   height: 20vw;
   border-radius: 10px;
   margin-right: 10px;
 }
 
 .videoContent {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   width: 60%;
-  top: 0%;
 }
 
 .videoHeader {
-  display: flex;
+  top: 0;
   align-items: center;
   margin-bottom: 1vw;
 }
@@ -80,4 +73,26 @@
   justify-content: center;
   height: 100vh;
   width: 100%;
+}
+
+.videoMeta{
+  display: flex;
+  gap: 0.5vw;
+
+}
+.videoChannel{
+  display: flex;
+  gap: 0.3vw;
+  margin-left: 0;
+  align-items: center;
+  padding-top: 0.7vw;
+}
+
+.videoDescription {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 2vw;
 }

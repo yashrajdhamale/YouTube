@@ -54,6 +54,10 @@
 #user-icon {
   position: relative;
   cursor: pointer;
+  border-radius: 500%;
+  border: solid 0.1vw #000;
+  width: 2vw;
+  height: 2vw;
 }
 
 #options-box {
@@ -207,7 +211,7 @@
 #suggestions-box {
   position: absolute;
   top: 3.8vw; /* Position below the search input */
-  left: 27vw;
+  left: 28vw;
   width: 40vw; /* Same width as the input */
   background-color: white;
   /* border: 0.07vw solid #000; */

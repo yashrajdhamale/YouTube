@@ -10,7 +10,7 @@ const apiKeys = [
   'AIzaSyCm7wv1C0aPDlGK3OPUfYVGIEcCXG3Sk54',
   'AIzaSyDlgGSs2w32aedBgJ5PLbvIurfTBH7T0P8',
   'AIzaSyDH_Q0cvzezf5JMROkPzMMOA_PkE5qpMFY',
-  'AIzaSyDb1i8QG2CVrsmyP-6aUaLo1_M4W4f8yzU', 
+  'AIzaSyDb1i8QG2CVrsmyP-6aUaLo1_M4W4f8yzU',
   'AIzaSyCI6-RU1-yZF_oIDbWmV9zrMhKdznPgtxY',
   'AIzaSyDRfXr8A16LH1Upyod1p3uwm-JSiBRk84Y'
 ];
@@ -170,6 +170,10 @@ export default function Search({ query, setHomedata }) {
             <div className={styles.videoContent}>
               <div className={styles.videoHeader}>
                 <h3 className={styles.videoTitle}>{e.snippet.title}</h3>
+                <div className={styles.videoMeta}>
+                  <span>{formatViewCount(parseInt(e.statistics.viewCount))} views</span>
+                  <span>{timeSinceUpload(e.snippet.publishedAt)}</span>
+                </div>
                 <div className={styles.videoChannel}>
                   <img
                     src={e.channelProfile}
@@ -178,11 +182,10 @@ export default function Search({ query, setHomedata }) {
                   />
                   <span className={styles.channelTitle}>{e.snippet.channelTitle}</span>
                 </div>
+                {/* add one liner video description */}
+                <p className={styles.videoDescription}>{e.snippet.description}</p>
               </div>
-              <div className={styles.videoMeta}>
-                <span>{formatViewCount(parseInt(e.statistics.viewCount))} views</span>
-                <span>{timeSinceUpload(e.snippet.publishedAt)}</span>
-              </div>
+
             </div>
           </div>
         ))

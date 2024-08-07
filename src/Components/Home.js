@@ -56,7 +56,7 @@ export default function Home(props) {
       try {
         const endpoint = `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&chart=mostPopular&regionCode=IN&maxResults=30&pageToken=${token}&key=${apiKeys[i]}`;
 
-        console.log('Fetching data from endpoint:', endpoint);
+        // console.log('Fetching data from endpoint:', endpoint);
 
         const result = await fetch(endpoint);
         if (result.ok) {

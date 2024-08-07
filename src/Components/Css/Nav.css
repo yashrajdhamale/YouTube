@@ -1,5 +1,4 @@
-/* Css/Nav.css */
-
+/* General Nav Styles */
 #nav {
   position: fixed;
   top: 0vw;
@@ -13,8 +12,15 @@
   z-index: 1000;
   box-sizing: border-box;
   padding: 1vw;
+  transition: background-color 0.3s, color 0.3s;
 }
 
+#nav.dark {
+  background-color: #0f0f0f;
+  color: white;
+}
+
+/* Left Section */
 #left {
   display: flex;
   align-items: center;
@@ -23,6 +29,7 @@
   width: auto;
 }
 
+/* Bar Icon */
 #baricon {
   cursor: pointer;
   padding: 1vw;
@@ -30,12 +37,20 @@
   width: 1.5vw;
 }
 
+/* Logo Image */
 #logoimg {
   height: 6.4vw;
   width: 6.4vw;
   padding: 1vw;
 }
 
+#nav.dark .youtubeindark {
+  height: 6.4vw;
+  width: 6.4vw;
+  padding: 1vw;
+}
+
+/* Right Section */
 #right {
   display: flex;
   align-items: center;
@@ -45,12 +60,19 @@
   padding: 0 2vw;
 }
 
+/* Icons */
 #right .icon {
   padding: 1vw;
   height: 1.6vw;
   width: 1.6vw;
+  color: #000;
 }
 
+#nav.dark #right .icon {
+  color: #fff;
+}
+
+/* User Icon */
 #user-icon {
   position: relative;
   cursor: pointer;
@@ -58,35 +80,58 @@
   border: solid 0.1vw #000;
   width: 2vw;
   height: 2vw;
+  background-color: #f0f0f0;
 }
 
+#nav.dark #user-icon {
+  border-color: #fff;
+  background-color: #1d92eb;
+}
+
+/* Options Box */
 #options-box {
   position: absolute;
   top: 3vw; /* Adjust as needed */
   right: 0;
   background-color: white;
-  /* border: 0.07vw solid #000; */
   border-radius: 0.5vw;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   z-index: 1001;
+  transition: background-color 0.3s, color 0.3s;
 }
 
+#nav.dark #options-box {
+  background-color: #0f0f0f;
+  border: 0.07vw solid white;
+}
+
+/* Options */
 .option {
   padding: 1vw;
   width: 10vw;
   font-size: 1vw;
   cursor: pointer;
   border-bottom: 0.07vw solid #ddd;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .option:last-child {
   border-bottom: none;
 }
 
-.option:hover {
+/* .option:hover {
   background-color: #f0f0f0;
+} */
+
+#nav.dark .option {
+  color: white;
 }
 
+/* #nav.dark .option:hover {
+  background-color: #398fcc;
+} */
+
+/* Midpart Section */
 #midpart {
   display: flex;
   align-items: center;
@@ -95,6 +140,7 @@
   position: relative;
 }
 
+/* Search Input Container */
 #input-container {
   display: flex;
   align-items: center;
@@ -103,6 +149,7 @@
   height: 2.5vw;
 }
 
+/* Search Left */
 #search-left,
 #dontshow-searchleft {
   position: absolute;
@@ -123,6 +170,13 @@
   display: none;
 }
 
+#nav.dark #search-left,
+#nav.dark #dontshow-searchleft {
+  border-color: #333;
+  background-color: #333;
+}
+
+/* Input Field */
 #input {
   width: 32vw;
   height: 2.5vw;
@@ -146,6 +200,7 @@
   white-space: nowrap;
   font-size: 1vw;
   line-height: 2.5vw;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 #textinput {
@@ -158,6 +213,14 @@
   border-right: none;
 }
 
+#nav.dark #textinput,
+#nav.dark #textinputchange {
+  background-color: #0f0f0f;
+  border: 0.07vw solid #333;
+  color: white;
+}
+
+/* Search Right */
 #searchright {
   cursor: pointer;
   display: flex;
@@ -179,27 +242,43 @@
   background-color: rgb(202, 228, 251);
 }
 
+#nav.dark #searchright {
+  background-color: #333;
+}
+
+#nav.dark #searchright:hover {
+  background-color: #444;
+}
+
+/* Microphone Icon */
 #mic {
   cursor: pointer;
-  height: 2vw;
-  width: 2vw;
+  height: 2.5vw;
+  width: 2.5vw;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 0.5vw;
   border-radius: 50%;
   background-color: aliceblue;
-  flex-shrink: 0;
+}
+
+#nav.dark #mic {
+  background-color: #333;
 }
 
 #micicon {
   font-size: 1.2vw;
 }
 
+#nav.dark #micicon {
+  color: white;
+}
+
+/* Clear Icon */
 #clear-icon {
   position: absolute;
   right: 0.2vw; /* Adjust this as needed to position the clear icon */
-  
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
@@ -208,19 +287,30 @@
   width: 1.5vw;
 }
 
+#nav.dark #clear-icon {
+  background-color: #0f0f0f;
+  color: white;
+}
+
+/* Suggestions Box */
 #suggestions-box {
   position: absolute;
   top: 3.8vw; /* Position below the search input */
   left: 28vw;
   width: 40vw; /* Same width as the input */
   background-color: white;
-  /* border: 0.07vw solid #000; */
   border-radius: 1vw;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   z-index: 1001;
   overflow-y: auto; /* Scroll if too many suggestions */
 }
 
+#nav.dark #suggestions-box {
+  background-color: #0f0f0f;
+  color: white;
+}
+
+/* Suggestion Item */
 .suggestion-item {
   padding: 1vw;
   font-size: 1vw;
@@ -234,4 +324,12 @@
 
 .suggestion-item:hover {
   background-color: #f0f0f0;
+}
+
+#nav.dark .suggestion-item {
+  color: white;
+}
+
+#nav.dark .suggestion-item:hover {
+  background-color: #398fcc;
 }

@@ -1,22 +1,43 @@
+/* Default Styles for Search Container */
 .searchContainer {
   display: flex;
   flex-direction: column;
-  gap: 1vw;
-  padding: 6vw;
   box-sizing: border-box;
+  /* background-color: white;  */
+  color: black; /* Light theme text color */
+  padding-top: 5vw;
+  padding-left: 5vw;
 }
 
+/* Dark Theme Styles */
+.dark .searchContainer {
+  background-color: #0f0f0f; /* Dark theme background */
+  color: white; /* Dark theme text color */
+}
+
+/* Inner Container to handle padding */
+.searchContainer-inner {
+  padding: 6vw;
+}
+
+/* Video Item Styles */
 .videoItem {
   display: flex;
   cursor: pointer;
   padding: 10px;
-  border-radius: 8px;
+  background-color: #fff; /* Light theme background for video items */
+  color: black; /* Light theme text color */
 }
 
-.videoItem:hover {
-  transform: translateY(-2px);
+.dark .videoItem {
+  background-color: #0f0f0f; /* Dark theme background for video items */
+  color: white; /* Dark theme text color */
 }
 
+
+
+
+/* Video Thumbnail */
 .videoThumbnail {
   width: 35vw;
   height: 20vw;
@@ -24,23 +45,32 @@
   margin-right: 10px;
 }
 
+/* Video Content */
 .videoContent {
   width: 60%;
 }
 
+/* Video Header */
 .videoHeader {
   top: 0;
   align-items: center;
   margin-bottom: 1vw;
 }
 
+/* Channel Profile */
 .channelProfile {
   width: 30px;
   height: 30px;
   border-radius: 50%;
   margin-right: 10px;
+  border: 2px solid #ccc; /* Light theme border for profile picture */
 }
 
+.dark .channelProfile {
+  border: 2px solid #444; /* Dark theme border for profile picture */
+}
+
+/* Video Title */
 .videoTitle {
   margin: 0;
   margin-bottom: 0.5vw;
@@ -53,13 +83,22 @@
   white-space: normal;
 }
 
+.dark .videoTitle {
+  color: white; /* Dark theme text color */
+}
+
+/* Channel Title */
 .channelTitle {
   margin: 0;
 }
 
+.dark .channelTitle {
+  color: #ccc; /* Dark theme text color */
+}
+
+/* View Time Info */
 .viewTimeInfo {
   display: flex;
-  gap: 1vw;
 }
 
 .viewCount,
@@ -67,6 +106,12 @@
   margin: 0;
 }
 
+.dark .viewCount,
+.dark .publishDate {
+  color: #ccc; /* Dark theme text color */
+}
+
+/* Loading Message */
 .loadingMessage {
   display: flex;
   align-items: center;
@@ -75,12 +120,22 @@
   width: 100%;
 }
 
-.videoMeta{
+.dark .loadingMessage {
+  color: white; /* Dark theme text color */
+}
+
+/* Video Meta */
+.videoMeta {
   display: flex;
   gap: 0.5vw;
-
 }
-.videoChannel{
+
+.dark .videoMeta {
+  color: #ccc; /* Dark theme text color */
+}
+
+/* Video Channel */
+.videoChannel {
   display: flex;
   gap: 0.3vw;
   margin-left: 0;
@@ -88,11 +143,20 @@
   padding-top: 0.7vw;
 }
 
+.dark .videoChannel {
+  color: #ccc; /* Dark theme text color */
+}
+
+/* Video Description */
 .videoDescription {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   font-size: 0.9rem;
-  color: #666;
+  color: #666; /* Light theme text color */
   margin-top: 2vw;
+}
+
+.dark .videoDescription {
+  color: #999; /* Dark theme text color */
 }

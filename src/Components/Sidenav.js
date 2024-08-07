@@ -16,7 +16,7 @@ export default function Sidenav(props) {
     navigate('/YouTube'); 
   };
   return (
-    <div className='Sidenav'>
+    <div className={`Sidenav ${props.darkTheme ? 'dark' : ''}`}>
       <div className="firsticon" onClick={handleHomeClick}>
         <Link to="/YouTube">
           <FontAwesomeIcon id='ii' icon={faHouse} />

@@ -1,0 +1,35 @@
+/* Default Styles for App */
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: white; /* Light theme background */
+  color: black; /* Light theme text color */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for theme changes */
+}
+
+/* Dark Theme Styles */
+.App.dark {
+  background-color: #0f0f0f; /* Dark theme background */
+  color: white; /* Dark theme text color */
+}
+
+/* General Styling for Children */
+.App .nav,
+.App .sidenav,
+.App .home,
+.App .search,
+.App .playvideo {
+  background-color: inherit; /* Inherit background color from App */
+  color: inherit; /* Inherit text color from App */
+}
+
+/* Optional: Add styling for specific components if needed */
+.App .nav.dark,
+.App .sidenav.dark,
+.App .home.dark,
+.App .search.dark,
+.App .playvideo.dark {
+  background-color: inherit; /* Ensure components follow dark theme */
+  color: inherit; /* Ensure components follow dark theme */
+}

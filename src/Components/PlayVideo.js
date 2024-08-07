@@ -16,7 +16,7 @@ function PlayVideo(props) {
   };
 
   return (
-    <div className="video-player">
+    <div className={`video-player ${props.darkTheme ? 'dark' : ''}`}>
       <iframe
         width="100%"
         height="500"
@@ -30,7 +30,7 @@ function PlayVideo(props) {
         {props.homedata.map((e, index) => {
           if (videoId === (e.id.videoId || e.id)) {
             return (
-              <div key={`${e.id.videoId || e.id}_${index}`} className="video-details">
+              <div key={`${e.id.videoId || e.id}_${index}`} className={`video-details ${props.darkTheme ? 'dark-details' : ''}`}>
                 <h2 className="video-title">{e.snippet.title}</h2>
                 <div className="channel-title">
                   <img
@@ -44,8 +44,6 @@ function PlayVideo(props) {
                   <p>{e.statistics ? formatViewCount(e.statistics.viewCount) : 'N/A'} views</p>
                   <p className="publish-date">{new Date(e.snippet.publishedAt).toDateString()}</p>
                 </div>
-                
-
                 <div className="description">
                   <p>{e.snippet.description}</p>
                 </div>

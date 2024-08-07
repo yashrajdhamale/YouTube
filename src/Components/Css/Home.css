@@ -6,7 +6,8 @@
   padding-left: 6vw;
   padding-right: 3vw;
   padding-bottom: 3vw;
-  box-sizing: border-box;
+  border: none;
+  /* box-sizing: border-box; */
 }
 
 .video-item {
@@ -98,4 +99,44 @@
 
 #channelTitle {
   margin-left: 2.4vw;
+}
+
+/* Dark Theme Styles */
+.dark #home {
+  background-color: #0f0f0f;
+  color: white;
+}
+
+.dark .video-item {
+  background-color: #1a1a1a; /* Darker background for video items */
+  color: white;
+}
+
+.dark .video-item:hover {
+  background-color: #333; /* Slightly lighter on hover */
+}
+
+.dark .video-item p {
+  color: #ccc; /* Light grey text */
+}
+
+.dark .video-thumbnail {
+  border: 1px solid #444; /* Add border to differentiate thumbnail */
+}
+
+.dark .loading-message {
+  color: white; /* Adjust text color for loading message */
+}
+
+.dark #view_time,
+.dark #publishdate {
+  color: white; /* Adjust text color for view time and publish date */
+}
+
+.dark .channel-info {
+  color: white; /* Adjust text color for channel info */
+}
+
+.dark .channel-profile {
+  border: 2px solid #444; /* Border for profile picture */
 }

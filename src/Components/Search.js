@@ -15,7 +15,7 @@ const apiKeys = [
   'AIzaSyDRfXr8A16LH1Upyod1p3uwm-JSiBRk84Y'
 ];
 
-export default function Search({ query, setHomedata }) {
+export default function Search({ query, setHomedata, darkTheme }) {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [pageToken, setToken] = useState('');
@@ -153,13 +153,13 @@ export default function Search({ query, setHomedata }) {
   }, [fetchData, pageToken, isLoading, apiKeyIndex]);
 
   return (
-    <div className={styles.searchContainer}>
+    <div className={`${styles.searchContainer} ${darkTheme ? styles.dark : ''}`}>
       <LoadingLine isLoading={isLoading} />
       {data.length > 0 ? (
         data.map((e, index) => (
           <div
             key={`${e.id.videoId}_${index}`}
-            className={styles.videoItem}
+            className={`${styles.videoItem} ${darkTheme ? styles.darkItem : ''}`}
             onClick={() => handleVideoClick(e)}
           >
             <img
@@ -182,10 +182,8 @@ export default function Search({ query, setHomedata }) {
                   />
                   <span className={styles.channelTitle}>{e.snippet.channelTitle}</span>
                 </div>
-                {/* add one liner video description */}
                 <p className={styles.videoDescription}>{e.snippet.description}</p>
               </div>
-
             </div>
           </div>
         ))

@@ -1,4 +1,4 @@
-# YouTube Clone
+# YouTube 
 
 This project is a YouTube clone built with React, bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It features a responsive design, a navigation bar with search functionality, and a side navigation menu with icons for home, shorts, subscriptions, and user profile.
 
